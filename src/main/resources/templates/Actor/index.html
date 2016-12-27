@@ -38,6 +38,7 @@
                     <th th:utext="#{actor.blood}">blood</th>
                     <th th:utext="#{actor.birthday}">birthday</th>
                     <th th:utext="#{actor.birthplace}">birthplace</th>
+                    <th th:utext="#{actor.salary}">salary</th>
                     <th th:utext="#{actor.update_at}">update_at</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -55,10 +56,11 @@
                         birthday
                     </td>
                     <td th:text="${item.birthplaceId}">birthplaceId</td>
+                    <td th:text="${item.salary}">salary</td>
                     <td th:text="${item.updateAt}">update_at</td>
                     <td>
                         <a class="btn btn-warning" href="/actor/delete/${item.id}"
-                           th:href="@{/actor/delete/{id}(id=${item.id})}">delete</a>
+                           th:href="@{/actor/delete/{id}(id=${item.id})}">移除</a>
                     </td>
                 </tr>
                 </tbody>

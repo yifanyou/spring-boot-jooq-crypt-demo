@@ -1,4 +1,4 @@
-package com.example.jooq;
+package com.example.crypt;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,6 +1,6 @@
-package com.example.jooq.service;
+package com.example.crypt.service;
 
-import static com.example.jooq.db.Tables.*;
+import static com.example.crypt.domain.jooq.Tables.*;
 
 import org.jooq.DSLContext;
 import org.jooq.Result;
@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.jooq.db.tables.records.PrefectureRecord;
+import com.example.crypt.domain.jooq.tables.records.PrefectureRecord;
 
 @Service
 public class PrefectureService {

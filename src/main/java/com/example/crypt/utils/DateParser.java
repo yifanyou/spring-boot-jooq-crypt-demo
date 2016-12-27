@@ -1,4 +1,4 @@
-package com.example.jooq.utils;
+package com.example.crypt.utils;
 
 import java.time.Instant;
 import java.time.LocalDate;

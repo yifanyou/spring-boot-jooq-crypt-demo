@@ -1,4 +1,4 @@
-package com.example.jooq;
+package com.example.crypt;
 
 import org.jooq.ExecuteContext;
 import org.jooq.SQLDialect;

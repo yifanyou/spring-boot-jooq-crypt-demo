@@ -1,6 +1,7 @@
-package com.example.jooq.web;
+package com.example.crypt.domain.actor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -28,6 +29,8 @@ public class ActorForm implements Serializable {
     @Min(1)
     @Max(47)
     private String birthplaceId;
+
+    private String salary;
 
     public String getName() {
         return name;
@@ -67,6 +70,14 @@ public class ActorForm implements Serializable {
 
     public void setBirthplaceId(String birthplaceId) {
         this.birthplaceId = birthplaceId;
+    }
+
+    public String getSalary() {
+        return salary;
+    }
+
+    public void setSalary(String salary) {
+        this.salary = salary;
     }
 
     @Override

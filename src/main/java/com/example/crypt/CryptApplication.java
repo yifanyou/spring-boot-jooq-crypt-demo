@@ -1,25 +1,33 @@
-package com.example.jooq;
+package com.example.crypt;
 
-import javax.sql.DataSource;
-
-import org.jooq.ConnectionProvider;
-import org.jooq.DSLContext;
-import org.jooq.ExecuteListenerProvider;
-import org.jooq.SQLDialect;
-import org.jooq.TransactionProvider;
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jooq.*;
 import org.jooq.impl.DataSourceConnectionProvider;
 import org.jooq.impl.DefaultConfiguration;
 import org.jooq.impl.DefaultDSLContext;
 import org.jooq.impl.DefaultExecuteListenerProvider;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 
-//JooqAutoConfiguration
+import javax.sql.DataSource;
 
-@Configuration
-public class JooqSpringBootConfiguration {
+@SpringBootApplication
+public class CryptApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(CryptApplication.class, args);
+    }
+
+    @Bean
+    public ResourceBundleMessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasename("Messages");
+        return messageSource;
+    }
 
     @Bean
     public DataSourceTransactionManager transactionManager(DataSource dataSource) {
@@ -57,10 +65,10 @@ public class JooqSpringBootConfiguration {
             TransactionProvider transactionProvider,
             ExecuteListenerProvider executeListenerProvider) {
 
-        return new DefaultConfiguration() //
-                .derive(connectionProvider) //
-                .derive(transactionProvider) //
-                .derive(executeListenerProvider) //
+        return new DefaultConfiguration()
+                .derive(connectionProvider)
+                .derive(transactionProvider)
+                .derive(executeListenerProvider)
                 .derive(SQLDialect.MYSQL);
     }
 

@@ -1,12 +1,11 @@
-package com.example.jooq.web;
+package com.example.crypt.web;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Locale;
-
+import com.example.crypt.domain.actor.ActorForm;
+import com.example.crypt.domain.jooq.tables.records.ActorRecord;
+import com.example.crypt.domain.jooq.tables.records.PrefectureRecord;
+import com.example.crypt.service.ActorService;
+import com.example.crypt.service.PrefectureService;
+import com.example.crypt.utils.DateParser;
 import org.apache.commons.lang3.StringUtils;
 import org.jooq.Result;
 import org.slf4j.Logger;
@@ -21,19 +20,16 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.jooq.db.tables.records.ActorRecord;
-import com.example.jooq.db.tables.records.PrefectureRecord;
-import com.example.jooq.service.ActorService;
-import com.example.jooq.service.PrefectureService;
-import com.example.jooq.utils.DateParser;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
 
 @Controller
 @RequestMapping(value = "/actor")
@@ -142,6 +138,9 @@ public class ActorController {
         }
         if (StringUtils.isNotEmpty(form.getBirthplaceId())) {
             actor.setBirthplaceId(Short.valueOf(form.getBirthplaceId()));
+        }
+        if(StringUtils.isNotEmpty(form.getSalary())) {
+            actor.setSalary(BigDecimal.valueOf(Double.valueOf(form.getSalary())));
         }
         actor.setUpdateAt(new Timestamp(new Date().getTime()));
         return actor;
